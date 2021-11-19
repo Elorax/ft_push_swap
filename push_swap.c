@@ -7,8 +7,8 @@
 #define sa(); swap(a);
 #define sb(); swap(b);
 #define ss(); sa();sb();
-#define pa(); push(a, b);
-#define pb(); push(b, a);
+#define pa(); push(&a, &b);
+#define pb(); push(&b, &a);
 #define ra(); rotate(a);
 #define rb(); rotate(b);
 #define rr(); ra();rb();
@@ -31,7 +31,7 @@ typedef struct	s_itab
 }	t_itab;
 
 void	swap(t_itab a);
-void	push(t_itab a, t_itab b);
+void	push(t_itab *a, t_itab *b);
 void	rotate(t_itab a);
 void	reverse_rotate(t_itab a);
 
@@ -44,25 +44,25 @@ void	swap(t_itab a)
 	}
 }
 
-void push(t_itab a, t_itab b)
+void push(t_itab *a, t_itab *b)
 {
 	int	i;
 
-	i = a.size;
-	a.size++;
+	i = a->size;
+	a->size++;
 	while (i > 0)
 	{
-		a.tab[i] = a.tab[i - 1];
+		a->tab[i] = a->tab[i - 1];
 		i--;
 	}
-	a.tab[0] = b.tab[0];
-	while (i < b.size - 1)
+	a->tab[0] = b->tab[0];
+	while (i < b->size - 1)
 	{
-		b.tab[i] = b.tab[i + 1];
+		b->tab[i] = b->tab[i + 1];
 		i++;
 	}
-	b.tab[i] = 0;
-	b.size--;
+	b->tab[i] = 0;
+	b->size--;
 }
 
 void	rotate(t_itab a)
@@ -102,7 +102,7 @@ void	ft_display_stacks(t_itab a, t_itab b)
 		}
 		else
 		{
-			write(1, "  ", 2);
+			write(1, " ", 2);
 		}
 		write (1, "  ", 2);
 		if (i < b.size)
@@ -114,6 +114,7 @@ void	ft_display_stacks(t_itab a, t_itab b)
 	}
 	write (1, "__  __\na   b\n", 13);
 }
+
 void	ft_init_stacks(int nb, char **av, t_itab *a, t_itab *b)
 {
 	int	i;	
@@ -136,6 +137,107 @@ void	ft_init_stacks(int nb, char **av, t_itab *a, t_itab *b)
 		i++;
 	}
 }
+
+void	ft_stack_of_3(t_itab *a)
+{
+	if (a->tab[0] < a->tab[1] && a->tab[1] < a->tab[2])
+		return ;
+	else if (a->tab[0] < a->tab[1] && a->tab[0] < a->tab[2])
+	{
+		reverse_rotate(*a);
+		swap(*a);
+	}
+	else if (a->tab[0] > a->tab[1] && a->tab[1] > a->tab[2])
+	{
+		rotate(*a);
+		swap(*a);
+	}
+	else if (a->tab[0] > a->tab[1] && a->tab[0] > a->tab[2])
+		rotate(*a);
+	else if (a->tab[1] > a->tab[2])
+		reverse_rotate(*a);
+	else
+		swap(*a);
+}
+
+int	ft_find_closest(int a, int b, int size)
+{
+	if (size == 4)
+		return (a);
+	if ((a < (size - b) && a < b) || ((size - a) < (size - b) && (size - a) < a))
+		return (a);
+	else
+		return (b);
+}
+
+void	ft_remonter(t_itab *a, t_itab *b, int indice)
+{
+	int	i;
+
+	i = indice;
+	if (i <= a->size / 2)
+	{
+		while (i)
+		{
+			rotate(*a);
+			i--;
+		}
+	}
+	else
+		while (i < a->size)
+		{
+			reverse_rotate(*a);
+			i++;
+		}
+	printf("Apres remontee :\n\n");
+	ft_display_stacks(*a, *b);
+}
+
+void	ft_tri_stack(t_itab *a, t_itab *b)
+{
+	int	i;
+	int	min;
+	int	min2;
+
+	while (a->size > 3)
+	{
+		i = 2;
+		min = (a->tab[0] > a->tab[1]);
+		min2 = !(min);
+		while (i < a->size)
+		{
+			if (a->tab[min] > a->tab[i])
+			{
+				min2 = min;
+				min = i;
+			}
+			else if (a->tab[min2] > a->tab[i])
+				min2 = i;
+			i++;
+		}
+		printf("indices minimaux : %d(%d), %d(%d)\n\n\n", min, a->tab[min], min2, a->tab[min2]);
+		min = ft_find_closest(min, min2, a->size);
+		ft_remonter(a, b, min);
+		push(b, a);
+		printf("Apres push :\n\n");
+		ft_display_stacks(*a, *b);
+		if ((b->size >= 2) && (b->tab[0] < b->tab[1]))
+		{
+			swap(*b);
+			printf("Apres swap : \n\n");
+			ft_display_stacks(*a, *b);
+		}
+	}
+	ft_stack_of_3(a);
+	printf("Apres tri des trois elements de a : \n\n");
+	printf("b->size vaut %d\n\n", b->size);
+	ft_display_stacks(*a, *b);
+	while (b->size)
+	{
+		push(a, b);
+	}
+}
+
 int main(int argc, char **argv)
 {
 	t_itab	a;
@@ -148,7 +250,8 @@ int main(int argc, char **argv)
 	}
 	ft_init_stacks(argc - 1, &argv[1], &a, &b);
 	ft_display_stacks(a, b);
-	sa();
+	write(1, "\n\nResolution...\n\n\n", 18);
+	ft_tri_stack(&a, &b);
 	ft_display_stacks(a, b);
 	free(a.tab);
 	free(b.tab);
