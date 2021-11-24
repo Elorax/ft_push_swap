@@ -39,6 +39,8 @@ void	swap(t_itab a);
 void	push(t_itab *a, t_itab *b);
 void	rotate(t_itab a);
 void	reverse_rotate(t_itab a);
+int		is_arg_valid(char *s);
+void	ft_remonter(t_itab *a, int indice);
 
 
 void	swap(t_itab a)
@@ -108,18 +110,18 @@ void	reverse_rotate(t_itab a)
 	write(1, "\n", 1);
 }
 
-void	ft_init_stacks(int nb, char **av, t_itab *a, t_itab *b)
+int		ft_init_stacks(int nb, char **av, t_itab *a, t_itab *b)
 {
 	int	i;	
 
 	a->tab = (int *) malloc (sizeof(int) * (nb));
 	if (!(a->tab))
-		return ;
+		return (0);
 	b->tab = (int *) malloc (sizeof(int) * (nb));
 	if (!(b->tab))
 	{
 		free(a->tab);
-		return ;
+		return (0);
 	}
 	a->size = nb;
 	b->size = 0;
@@ -128,9 +130,13 @@ void	ft_init_stacks(int nb, char **av, t_itab *a, t_itab *b)
 	i = 0;
 	while (av[i])
 	{
-		a->tab[i] = ft_atoi(av[i]);
+		a->tab[i] = atoi(av[i]);
+		if (!is_arg_valid(av[i]))
+	{printf("%s n'est pas valide\n", av[i]);
+			return (0);}
 		i++;
 	}
+	return (1);
 }
 
 
@@ -193,19 +199,49 @@ void	ft_stack_of_3(t_itab *a)
 	else
 		swap(*a);
 }
-void	ft_tri_rapide(t_itab *a, t_itab *b);
+
+void	ft_calcul_mins(t_itab *a, int *min, int *min2)
 {
-	push(b, a);
-	push(b, a);
-	ft_stack_of_3(a);
-	if (b->tab[0] > b->tab[1])
+
+	int i;
+
+	i = 0;
+	*min = (a->tab[0] > a->tab[1]);
+	*min2 = !(*min);
+	while (i < a->size)
 	{
-		
+		if (a->tab[*min] > a->tab[i])
+		{
+			*min2 = *min;
+			*min = i;
+		}
+		else if (a->tab[*min2] > a->tab[i])
+			*min2 = i;
+		i++;
+	}
+}
+
+void	ft_tri_rapide(t_itab *a, t_itab *b)
+{
+	int min;
+	int min2;
+	int i;
+
+	if (a->size > 3)
+	{
+		ft_calcul_mins(a, &min, &min2);
+		printf("min et min2 %d %d\n", a->tab[min], a->tab[min2]);
+		ft_remonter(a, min);
+		push(b, a);
+		ft_calcul_mins(a, &min, &min2);
+		ft_remonter(a, min);
+		push(b, a);
+		ft_stack_of_3(a);
+		push(a, b);
+		push(a, b);
 	}
 	else
-	{
-
-	}
+		ft_stack_of_3(a);
 }
 //Ca en theorie ca marche pas trop mal, faut voir si condition de taille ou pas
 
@@ -386,59 +422,79 @@ void	ft_tri_stack(t_itab *a, t_itab *b)
 		idx_pars++;
 	}
 	free(parsing);
-
-
-
-	/*while (a->size > 3)
-	{
-		i = 2;
-		min = (a->tab[0] > a->tab[1]);
-		min2 = !(min);
-		while (i < a->size)
-		{
-			if (a->tab[min] > a->tab[i])
-			{
-				min2 = min;
-				min = i;
-			}
-			else if (a->tab[min2] > a->tab[i])
-				min2 = i;
-			i++;
-		}
-		//printf("indices minimaux : %d(%d), %d(%d)\n\n\n", min, a->tab[min], min2, a->tab[min2]);
-		//min = ft_find_closest(min, min2, a->size);
-		if (triche)
-		{
-			ft_remonter(a, min);
-			//printf("Je viens de tricher !\n\n");
-			triche = 0;
-		}
-		else
-		{
-			triche = min - ft_find_closest(min, min2, a->size);
-			ft_remonter(a, ft_find_closest(min, min2, a->size));
-		}
-		push(b, a);
-		//printf("Apres push :\n\n");
-		//ft_display_stacks(*a, *b);
-		if ((b->size >= 2) && (b->tab[0] < b->tab[1]))
-		{
-			swap(*b);
-			//printf("Apres swap : \n\n");
-			//ft_display_stacks(*a, *b);
-		}
-	}
-	ft_stack_of_3(a);
-	//printf("Apres tri des trois elements de a : \n\n");
-	//printf("b->size vaut %d\n\n", b->size);
-	//ft_display_stacks(*a, *b);
-	while (b->size)
-	{
-		push(a, b);
-	}*/
 }
 
-int main(int argc, char **argv)
+int ft_is_stack_sorted(t_itab a)
+{
+	int	i;
+
+	i = 0;
+	while (i < a.size - 1)
+	{
+		if (a.tab[i] > a.tab[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+
+int is_arg_valid(char *s)
+{
+	long long int res;
+	int sign;
+
+	while (*s && (*s == '\f' || *s == '\t' || *s == '\n' || *s == '\r' || *s == '\v' || *s == ' '))
+		*s++;
+	if (!(*s))
+		{printf("419\n");return (0);}
+	res = 0;
+	sign = 1;
+	if (s[0] == '-')
+	{	sign = -1;
+		s++;}
+	if (s[0] == '+')
+		s++;
+	while (ft_isdigit(*s))
+	{
+		res = (res * 10) + (*s - '0');
+		s++;
+	}
+	res = res * sign;
+	if (*s && !ft_isdigit(*s))
+		return (0);
+	if (res > 2147483647 || res < -2147483648)
+		return (0);
+	return (1);
+}
+
+int ft_is_stack_valid(t_itab a)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 1;
+	while (i < a.size - 1)
+	{
+		while (j < a.size)
+		{
+			if (a.tab[i] == a.tab[j])
+			{
+				printf("%d et %d\n\n", i, j);
+				return (0);
+			}
+			j++;
+		}
+		i++;
+		j = i + 1;
+	}
+	return (1);
+}
+
+
+
+/*int main(int argc, char **argv)
 {
 	t_itab	a;
 	t_itab	b;
@@ -448,16 +504,62 @@ int main(int argc, char **argv)
 		printf("Pas de pile a trier.\n");
 		return (0);
 	}
-	ft_init_stacks(argc - 1, &argv[1], &a, &b);
-	ft_display_stacks(a, b);
-	write(1, "\n\nResolution...\n\n\n", 18);
-	if (a.size < 6)
+	if (!(ft_init_stacks(argc - 1, &argv[1], &a, &b)))
 	{
-		ft_tri_rapide(&a, &b);
+		write(2, "Error\n", 6);
+		return (0);
+	}
+	ft_display_stacks(a, b);
+	if (!(ft_is_stack_valid(a)))
+	{
+		write(2, "Error\n", 6);
+		return (0);
+	}
+	if (!ft_is_stack_sorted(a))
+	{
+		write(1, "\n\nResolution...\n\n\n", 18);
+		if (a.size < 6)
+		{
+			ft_tri_rapide(&a, &b);
+		}
+		else
+			ft_tri_stack(&a, &b);
+		printf("\n\n");
+		ft_display_stacks(a, b);
 	}
 	else
-		ft_tri_stack(&a, &b);
-	printf("\n\n");
+		write(1, "C'est deja sorted patate\n", 25);
+	free(a.tab);
+	free(b.tab);
+	printf("Nb d'operations : %d\n", counter);
+	return (0);
+}*/
+
+
+int main(int argc, char **argv)
+{
+	t_itab	a;
+	t_itab	b;
+
+	if (argc < 2)
+		return (0);
+	else if (!(ft_init_stacks(argc - 1, &argv[1], &a, &b)))
+	{
+		write(2, "Error\n", 6);
+	}
+	else if (!(ft_is_stack_valid(a)))
+	{
+		write(2, "Error\n", 6);
+	}
+	else if (!ft_is_stack_sorted(a))
+	{
+		if (a.size < 6)
+			ft_tri_rapide(&a, &b);
+		else
+			ft_tri_stack(&a, &b);
+	}
+	else
+		write(1, "C'est deja sorted patate\n", 25);
 	ft_display_stacks(a, b);
 	free(a.tab);
 	free(b.tab);
