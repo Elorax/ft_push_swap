@@ -445,7 +445,7 @@ int is_arg_valid(char *s)
 	int sign;
 
 	while (*s && (*s == '\f' || *s == '\t' || *s == '\n' || *s == '\r' || *s == '\v' || *s == ' '))
-		*s++;
+		s++;
 	if (!(*s))
 		{printf("419\n");return (0);}
 	res = 0;
@@ -546,10 +546,16 @@ int main(int argc, char **argv)
 	else if (!(ft_init_stacks(argc - 1, &argv[1], &a, &b)))
 	{
 		write(2, "Error\n", 6);
+		free(a.tab);
+		free(b.tab);
+		return (0);
 	}
 	else if (!(ft_is_stack_valid(a)))
 	{
 		write(2, "Error\n", 6);
+		free(a.tab);
+		free(b.tab);
+		return (0);
 	}
 	else if (!ft_is_stack_sorted(a))
 	{
