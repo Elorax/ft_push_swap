@@ -6,45 +6,60 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 12:27:52 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/25 21:34:07 by abiersoh         ###   ########.fr       */
+/*   Updated: 2021/11/25 13:21:39 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-int main(int argc, char **argv)
+void	ft_calcul_mins(t_itab *a, int *min, int *min2)
 {
-	t_itab	a;
-	t_itab	b;
 
-	if (argc < 2)
-		return (0);
-	else if (!(ft_init_stacks(argc - 1, &argv[1], &a, &b)))
+	int i;
+
+	i = 0;
+	*min = (a->tab[0] > a->tab[1]);
+	*min2 = !(*min);
+	while (i < a->size)
 	{
-		write(2, "Error\n", 6);
-		free(a.tab);
-		free(b.tab);
-		return (0);
+		if (a->tab[*min] > a->tab[i])
+		{
+			*min2 = *min;
+			*min = i;
+		}
+		else if (a->tab[*min2] > a->tab[i])
+			*min2 = i;
+		i++;
 	}
-	else if (!(ft_is_stack_valid(a)))
+}
+
+int	ft_find_closest(int a, int b, int size)
+{
+	/*if (size == 4)
+		return (a);*/
+	if ((a < (size - b) && a < b) || ((size - a) < (size - b) && (size - a) < a))
+		return (a);
+	else
+		return (b);
+}
+
+void	ft_remonter(t_itab *a, int indice)
+{
+	int	i;
+
+	i = indice;
+	if (i <= a->size / 2)
 	{
-		write(2, "Error\n", 6);
-		free(a.tab);
-		free(b.tab);
-		return (0);
-	}
-	else if (!ft_is_stack_sorted(a))
-	{
-		if (a.size < 6)
-			ft_tri_rapide(&a, &b);
-		else
-			ft_tri_stack(&a, &b);
+		while (i)
+		{
+			rotate(*a);
+			i--;
+		}
 	}
 	else
-		write(1, "C'est deja sorted patate\n", 25);
-	ft_display_stacks(a, b);
-	free(a.tab);
-	free(b.tab);
-	printf("Nb d'operations : a definir\n");
-	return (0);
+		while (i < a->size)
+		{
+			reverse_rotate(*a);
+			i++;
+		}
 }
