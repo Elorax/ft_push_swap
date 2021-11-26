@@ -6,7 +6,7 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 13:23:12 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/25 13:23:14 by abiersoh         ###   ########.fr       */
+/*   Updated: 2021/11/26 12:15:39 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	calcul_nb_parsing(int size)
 		return (10);
 	if (size <= 600)
 		return (11);
-	return (size/50);
+	return (12);
 }
 
 int	*find_parsing(t_itab a)

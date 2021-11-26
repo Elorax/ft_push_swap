@@ -17,14 +17,14 @@ LIBPATH			= libft/
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				cd $(LIBPATH) && make && cd ..
+				make -C $(LIBPATH)
 				gcc $(CFLAGS) -o $(NAME) $(SRCS) $(LIBPATH)$(LIB)
 
 clean:
-				rm -f $(OBJS) && cd $(LIBPATH) && make clean && cd ..
+				rm -f $(OBJS) && make -C $(LIBPATH) clean
 
 fclean:			clean
-				rm -f $(NAME) && cd $(LIBPATH) && make fclean && cd ..
+				rm -f $(NAME) && make -C $(LIBPATH) fclean
 
 re:			fclean $(NAME)
 
