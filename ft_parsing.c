@@ -6,7 +6,7 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 13:23:12 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/26 12:15:39 by abiersoh         ###   ########.fr       */
+/*   Updated: 2021/11/26 13:54:17 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,38 +36,26 @@ int	*find_parsing(t_itab a)
 	int	*parse;
 	int	i;
 	int	count_parse;
-	int	nb_parsing;
 	int	j;
 
-	nb_parsing = calcul_nb_parsing(a.size);
-
-	parse = (int *) malloc(sizeof(int) * (nb_parsing + 2));
+	parse = (int *) malloc(sizeof(int) * (calcul_nb_parsing(a.size) + 2));
 	if (!parse)
 		return (NULL);
-	parse[0] = nb_parsing;
+	parse[0] = calcul_nb_parsing(a.size);
 	i = 0;
-	while (i < a.size)
+	while (++i < a.size)
 	{
-		j = 0;
+		j = -1;
 		count_parse = 0;
-		while (j < a.size)
-		{
+		while (++j < a.size)
 			if (a.tab[i] <= a.tab[j])
 				count_parse++;
-			j++;
-		}
-		//Si count_parse est divisible par la taille d'un chunk
-		if (!(count_parse % (a.size/parse[0])))
-		{
-		//Alors on rentre ce nombre dans la taille du chunk. Peutetre a reecrire plus tard
-			parse[1 + (count_parse/(a.size/parse[0]))] = a.tab[i];
-			//parse[parse[0] - count_parse/(a.size/parse[0])] = a.tab[i];
-		}
+		if (!(count_parse % (a.size / parse[0])))
+			parse[1 + (count_parse / (a.size / parse[0]))] = a.tab[i];
 		if (count_parse == 1)
 			parse[1] = a.tab[i];
 		if (count_parse == a.size)
 			parse[parse[0] + 1] = a.tab[i];
-		i++;
 	}
 	return (parse);
 }

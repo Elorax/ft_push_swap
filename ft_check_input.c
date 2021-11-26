@@ -6,13 +6,13 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 13:27:26 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/25 13:28:10 by abiersoh         ###   ########.fr       */
+/*   Updated: 2021/11/26 13:23:24 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-int ft_is_stack_sorted(t_itab a)
+int	ft_is_stack_sorted(t_itab a)
 {
 	int	i;
 
@@ -26,22 +26,21 @@ int ft_is_stack_sorted(t_itab a)
 	return (1);
 }
 
-int is_arg_valid(char *s)
+int	is_arg_valid(char *s)
 {
-	long long int res;
-	int sign;
+	long long int	res;
+	int				sign;
 
-	while (*s && (*s == '\f' || *s == '\t' || *s == '\n' || *s == '\r' || *s == '\v' || *s == ' '))
+	while (*s && (*s == '\f' || *s == '\t'
+			|| *s == '\n' || *s == '\r' || *s == '\v' || *s == ' '))
 		s++;
 	if (!(*s))
-		{printf("419\n");return (0);}
+		return (0);
 	res = 0;
 	sign = 1;
-	if (s[0] == '-')
-	{	sign = -1;
-		s++;}
-	if (s[0] == '+')
-		s++;
+	if (s[0] == '-' || s[0] == '+')
+		if (*s++ == '-')
+			sign = -1;
 	while (ft_isdigit(*s))
 	{
 		res = (res * 10) + (*s - '0');
@@ -55,7 +54,7 @@ int is_arg_valid(char *s)
 	return (1);
 }
 
-int ft_is_stack_valid(t_itab a)
+int	ft_is_stack_valid(t_itab a)
 {
 	int	i;
 	int	j;

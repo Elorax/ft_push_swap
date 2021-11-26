@@ -1,12 +1,12 @@
 SRCS			=	ft_advanced_stack_modifiers.c ft_check_input.c ft_display_stacks.c ft_init_stacks.c \
 					ft_parsing.c ft_stack_modifiers.c ft_tri_rapide.c ft_tri_stack.c ft_utils.c \
-					push_swap.c
+					ft_push_swap.c
 OBJS			= $(SRCS:.c=.o)
 
 CC			= gcc
 RM			= rm -f
 
-CFLAGS			= -Wall -Wextra -Werror -I.
+CFLAGS			= -Wall -g -Wextra -Werror -I.
 
 NAME			= push_swap
 

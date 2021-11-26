@@ -6,7 +6,7 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 13:17:36 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/25 21:26:43 by abiersoh         ###   ########.fr       */
+/*   Updated: 2021/11/26 14:00:09 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_stack_of_3(t_itab *a)
 	if (a->size == 2)
 	{
 		if (a->tab[0] > a->tab[1])
-		swap(*a);
+			swap(*a);
 	}
 	else if (a->tab[0] < a->tab[1] && a->tab[1] < a->tab[2])
 		return ;
@@ -41,8 +41,8 @@ void	ft_stack_of_3(t_itab *a)
 
 void	ft_tri_rapide(t_itab *a, t_itab *b)
 {
-	int min;
-	int min2;
+	int	min;
+	int	min2;
 
 	if (a->size > 3)
 	{

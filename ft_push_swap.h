@@ -6,7 +6,7 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 12:51:31 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/25 21:30:45 by abiersoh         ###   ########.fr       */
+/*   Updated: 2021/11/26 13:58:17 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@
 # include "libft.h"
 # include <unistd.h>
 
-typedef struct	s_itab
+typedef struct s_itab
 {
-	int	*tab;
-	int	size;
+	int		*tab;
+	int		size;
 	char	pile;
 }	t_itab;
-
 
 void	ft_swap(int *a, int *b);
 void	swap(t_itab a);

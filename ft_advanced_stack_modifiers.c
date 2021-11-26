@@ -6,7 +6,7 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 13:23:58 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/25 13:26:49 by abiersoh         ###   ########.fr       */
+/*   Updated: 2021/11/26 13:10:31 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ft_chunk_to_stack(t_itab *a, t_itab *b, int *parsing, int idx_pars)
 	size = a->size;
 	while (i < size && parsing[idx_pars] && a->tab[0] <= parsing[idx_pars - 1])
 	{
-		if (a->tab[0] >= parsing[idx_pars] && a->tab[0] <= parsing[idx_pars - 1])
+		if (a->tab[0] >= parsing[idx_pars]
+			&& a->tab[0] <= parsing[idx_pars - 1])
 			push(b, a);
 		else
 			rotate(*a);

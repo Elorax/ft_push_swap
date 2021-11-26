@@ -6,7 +6,7 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 13:12:38 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/25 21:33:49 by abiersoh         ###   ########.fr       */
+/*   Updated: 2021/11/26 13:59:33 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	ft_swap(int *a, int *b)
 	*a = *b;
 	*b = tmp;
 }
+
 void	swap(t_itab a)
 {
-//	counter++;
 	if (a.size > 1)
 	{
 		ft_swap(&(a.tab[0]), &(a.tab[1]));
@@ -32,10 +32,9 @@ void	swap(t_itab a)
 	write(1, "\n", 1);
 }
 
-void push(t_itab *a, t_itab *b)
+void	push(t_itab *a, t_itab *b)
 {
 	int	i;
-//	counter++;
 
 	i = a->size;
 	a->size++;
@@ -60,7 +59,7 @@ void push(t_itab *a, t_itab *b)
 void	rotate(t_itab a)
 {
 	int	i;
-//	counter++;
+
 	i = 0;
 	while (i < a.size - 1)
 	{
@@ -75,7 +74,7 @@ void	rotate(t_itab a)
 void	reverse_rotate(t_itab a)
 {
 	int	i;
-//	counter++;
+
 	i = a.size - 1;
 	while (i > 0)
 	{

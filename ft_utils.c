@@ -6,7 +6,7 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 12:27:52 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/25 13:21:39 by abiersoh         ###   ########.fr       */
+/*   Updated: 2021/11/26 14:04:23 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	ft_calcul_mins(t_itab *a, int *min, int *min2)
 {
-
-	int i;
+	int	i;
 
 	i = 0;
 	*min = (a->tab[0] > a->tab[1]);
@@ -35,9 +34,8 @@ void	ft_calcul_mins(t_itab *a, int *min, int *min2)
 
 int	ft_find_closest(int a, int b, int size)
 {
-	/*if (size == 4)
-		return (a);*/
-	if ((a < (size - b) && a < b) || ((size - a) < (size - b) && (size - a) < a))
+	if ((a < (size - b) && a < b)
+		|| ((size - a) < (size - b) && (size - a) < a))
 		return (a);
 	else
 		return (b);
@@ -57,9 +55,11 @@ void	ft_remonter(t_itab *a, int indice)
 		}
 	}
 	else
+	{
 		while (i < a->size)
 		{
 			reverse_rotate(*a);
 			i++;
 		}
+	}
 }
