@@ -6,7 +6,7 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 13:17:36 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/26 14:00:09 by abiersoh         ###   ########.fr       */
+/*   Updated: 2021/11/27 12:58:35 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	ft_tri_rapide(t_itab *a, t_itab *b)
 	if (a->size > 3)
 	{
 		ft_calcul_mins(a, &min, &min2);
-		printf("min et min2 %d %d\n", a->tab[min], a->tab[min2]);
 		ft_remonter(a, min);
 		push(b, a);
 		ft_calcul_mins(a, &min, &min2);

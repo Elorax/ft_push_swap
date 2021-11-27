@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_push_swap.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/25 12:51:31 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/26 13:58:17 by abiersoh         ###   ########.fr       */
+/*   Created: 2021/11/27 12:57:20 by abiersoh          #+#    #+#             */
+/*   Updated: 2021/11/27 13:12:15 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PUSH_SWAP_H
 # define FT_PUSH_SWAP_H
 # include <stdlib.h>
-# include <stdio.h>
-# include "libft.h"
 # include <unistd.h>
+# include <stdio.h>
+# include <stddef.h>
+# include "libft/libft.h"
 
 typedef struct s_itab
 {

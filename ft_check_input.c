@@ -6,7 +6,7 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 13:27:26 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/26 13:23:24 by abiersoh         ###   ########.fr       */
+/*   Updated: 2021/11/27 12:58:17 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int	ft_is_stack_valid(t_itab a)
 		{
 			if (a.tab[i] == a.tab[j])
 			{
-				printf("%d et %d\n\n", i, j);
 				return (0);
 			}
 			j++;

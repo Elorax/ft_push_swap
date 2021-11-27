@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   advanced_stack_modifiers.c                         :+:      :+:    :+:   */
+/*   ft_advanced_stack_modifiers.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 13:23:58 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/26 13:10:31 by abiersoh         ###   ########.fr       */
+/*   Updated: 2021/11/27 13:44:23 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	ft_chunk_to_stack(t_itab *a, t_itab *b, int *parsing, int idx_pars)
 
 	i = 0;
 	size = a->size;
-	while (i < size && parsing[idx_pars] && a->tab[0] <= parsing[idx_pars - 1])
+	while (i < size && parsing[idx_pars]
+		&& (a->tab[0] <= parsing[idx_pars - 1] || idx_pars == 2))
 	{
 		if (a->tab[0] >= parsing[idx_pars]
 			&& a->tab[0] <= parsing[idx_pars - 1])
