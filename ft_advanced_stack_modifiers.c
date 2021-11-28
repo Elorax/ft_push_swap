@@ -6,7 +6,7 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 13:23:58 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/27 13:44:23 by abiersoh         ###   ########.fr       */
+/*   Updated: 2021/11/28 03:51:48 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_chunk_to_stack(t_itab *a, t_itab *b, int *parsing, int idx_pars)
 
 	i = 0;
 	size = a->size;
-	while (i < size && parsing[idx_pars]
+	while (i < size
 		&& (a->tab[0] <= parsing[idx_pars - 1] || idx_pars == 2))
 	{
 		if (a->tab[0] >= parsing[idx_pars]

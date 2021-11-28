@@ -6,7 +6,7 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 13:23:12 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/27 13:26:15 by abiersoh         ###   ########.fr       */
+/*   Updated: 2021/11/28 04:08:51 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	calcul_nb_parsing(int size)
 {
 	if (size <= 20)
-		return (2);
+		return (3);
 	if (size <= 100)
 		return (5);
 	if (size <= 200)
