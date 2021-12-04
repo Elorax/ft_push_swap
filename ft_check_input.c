@@ -41,13 +41,15 @@ int	is_arg_valid(char *s)
 	if (s[0] == '-' || s[0] == '+')
 		if (*s++ == '-')
 			sign = -1;
-	while (ft_isdigit(*s))
+	//isdigit
+	while ((*s && *s >= '0' && *s <= '9'))
 	{
 		res = (res * 10) + (*s - '0');
 		s++;
 	}
 	res = res * sign;
-	if (*s && !ft_isdigit(*s))
+	//!isdigit
+	if (*s && (*s > '9' || *s < '0'))
 		return (0);
 	if (res > 2147483647 || res < -2147483648)
 		return (0);

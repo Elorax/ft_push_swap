@@ -17,7 +17,7 @@ LIBPATH			= libft/
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				make -C $(LIBPATH)
+				make -C $(LIBPATH) bonus
 				gcc $(CFLAGS) -o $(NAME) $(SRCS) $(LIBPATH)$(LIB)
 
 clean:

@@ -21,18 +21,19 @@ void	ft_swap(int *a, int *b)
 	*b = tmp;
 }
 
-void	swap(t_itab a)
+void	swap(t_itab a, int display)
 {
 	if (a.size > 1)
-	{
 		ft_swap(&(a.tab[0]), &(a.tab[1]));
+	if (display)
+	{
+		write(1, "s", 1);
+		write(1, &(a.pile), 1);
+		write(1, "\n", 1);
 	}
-	write(1, "s", 1);
-	write(1, &(a.pile), 1);
-	write(1, "\n", 1);
 }
 
-void	push(t_itab *a, t_itab *b)
+void	push(t_itab *a, t_itab *b, int display)
 {
 	int	i;
 
@@ -51,12 +52,15 @@ void	push(t_itab *a, t_itab *b)
 	}
 	b->tab[i] = 0;
 	b->size--;
-	write(1, "p", 1);
-	write(1, &(a->pile), 1);
-	write(1, "\n", 1);
+	if (display)
+	{
+		write(1, "p", 1);
+		write(1, &(a->pile), 1);
+		write(1, "\n", 1);
+	}
 }
 
-void	rotate(t_itab a)
+void	rotate(t_itab a, int display)
 {
 	int	i;
 
@@ -66,12 +70,14 @@ void	rotate(t_itab a)
 		ft_swap(&(a.tab[i]), &(a.tab[i + 1]));
 		i++;
 	}
-	write(1, "r", 1);
-	write(1, &(a.pile), 1);
-	write(1, "\n", 1);
+	if (display)
+	{
+		write(1, "r", 1);
+		write(1, &(a.pile), 1);
+		write(1, "\n", 1);
+	}
 }
-
-void	reverse_rotate(t_itab a)
+void	reverse_rotate(t_itab a, int display)
 {
 	int	i;
 
@@ -81,7 +87,10 @@ void	reverse_rotate(t_itab a)
 		ft_swap(&(a.tab[i]), &(a.tab[i - 1]));
 		i--;
 	}
-	write(1, "rr", 2);
-	write(1, &(a.pile), 1);
-	write(1, "\n", 1);
+	if (display)
+{
+		write(1, "rr", 2);
+		write(1, &(a.pile), 1);
+		write(1, "\n", 1);
+	}
 }

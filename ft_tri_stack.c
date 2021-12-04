@@ -25,7 +25,7 @@ void	ft_tri_stack(t_itab *a, t_itab *b)
 		while ((b->size))
 			ft_push_stack(a, b);
 		while (a->tab[0] > parsing[i])
-			rotate(*a);
+			rotate(*a, 1);
 		i++;
 	}
 	free(parsing);

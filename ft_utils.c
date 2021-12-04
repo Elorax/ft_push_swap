@@ -50,7 +50,7 @@ void	ft_remonter(t_itab *a, int indice)
 	{
 		while (i)
 		{
-			rotate(*a);
+			rotate(*a, 1);
 			i--;
 		}
 	}
@@ -58,7 +58,7 @@ void	ft_remonter(t_itab *a, int indice)
 	{
 		while (i < a->size)
 		{
-			reverse_rotate(*a);
+			reverse_rotate(*a, 1);
 			i++;
 		}
 	}

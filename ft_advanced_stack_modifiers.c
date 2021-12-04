@@ -24,9 +24,9 @@ void	ft_chunk_to_stack(t_itab *a, t_itab *b, int *parsing, int idx_pars)
 	{
 		if ((a->tab[0] > parsing[idx_pars] || (a->tab[0] == parsing[idx_pars] && idx_pars == parsing[0] + 1))
 			&& a->tab[0] <= parsing[idx_pars - 1])
-			push(b, a);
+			push(b, a, 1);
 		else
-			rotate(*a);
+			rotate(*a, 1);
 		i++;
 	}
 }
@@ -49,7 +49,7 @@ void	ft_push_stack(t_itab *a, t_itab *b)
 		i++;
 	}
 	ft_remonter(b, ft_find_closest(min, max, b->size));
-	push(a, b);
+	push(a, b, 1);
 	if (ft_find_closest(min, max, b->size + 1) == min)
-		rotate(*a);
+		rotate(*a, 1);
 }

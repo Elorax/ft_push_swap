@@ -28,13 +28,13 @@ typedef struct s_itab
 /*	Echange tout simplement les deux valeurs pointees par a et b	*/
 void	ft_swap(int *a, int *b);
 /*	Swap first and second element of a stack						*/
-void	swap(t_itab a);
+void	swap(t_itab a, int display);
 /*	Push first element of stack a to the top of stack b				*/
-void	push(t_itab *a, t_itab *b);
+void	push(t_itab *a, t_itab *b, int display);
 /*	Rotates the stack a to the top. first element becomes last one	*/
-void	rotate(t_itab a);
+void	rotate(t_itab a, int display);
 /*	Reverse rotates the stack. Last element becomes first one		*/
-void	reverse_rotate(t_itab a);
+void	reverse_rotate(t_itab a, int display);
 /*	Check if an argument is numeric and in the integer range		*/
 int		is_arg_valid(char *s);
 /*	Execute the amount of rotate or reverse_rotate needed to put	*/
