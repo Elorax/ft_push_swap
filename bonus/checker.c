@@ -10,6 +10,8 @@ void	checker(t_itab *a, t_itab *b)
 			swap(*a, 0);
 		else if (!ft_strncmp(str, "sb\n", 3))
 			swap(*b, 0);
+		else if (!ft_strncmp(str, "ss\n", 3))
+			(swap(*a, 0), swap(*b, 0));
 		else if (!ft_strncmp(str, "pa\n", 3))
 			push(a, b, 0);
 		else if (!ft_strncmp(str, "pb\n", 3))
@@ -18,6 +20,10 @@ void	checker(t_itab *a, t_itab *b)
 			rotate(*a, 0);
 		else if (!ft_strncmp(str, "rb\n", 3))
 			rotate(*b, 0);
+		else if (!ft_strncmp(str, "rr\n", 3))
+			(rotate(*a, 0), rotate(*b, 0));
+		else if (!ft_strncmp(str, "rrr\n", 4))
+			(reverse_rotate(*b, 0), reverse_rotate(*a, 0));
 		else if (!ft_strncmp(str, "rra\n", 4))
 			reverse_rotate(*a, 0);
 		else if (!ft_strncmp(str, "rrb\n", 4))
