@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_modifiers.c                                  :+:      :+:    :+:   */
+/*   ft_stack_modifiers.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 13:12:38 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/26 13:59:33 by abiersoh         ###   ########.fr       */
+/*   Updated: 2021/12/17 23:04:08 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	rotate(t_itab a, int display)
 		write(1, "\n", 1);
 	}
 }
+
 void	reverse_rotate(t_itab a, int display)
 {
 	int	i;
@@ -88,7 +89,7 @@ void	reverse_rotate(t_itab a, int display)
 		i--;
 	}
 	if (display)
-{
+	{
 		write(1, "rr", 2);
 		write(1, &(a.pile), 1);
 		write(1, "\n", 1);

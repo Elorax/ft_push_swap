@@ -6,7 +6,7 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 13:23:58 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/28 04:11:46 by abiersoh         ###   ########.fr       */
+/*   Updated: 2021/12/19 16:35:22 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,20 @@ void	ft_chunk_to_stack(t_itab *a, t_itab *b, int *parsing, int idx_pars)
 
 	i = 0;
 	size = a->size;
+	//On fait size operations.
+	//Condition du while a modifier.
 	while (i < size
 		&& (a->tab[0] <= parsing[idx_pars - 1] || idx_pars == 2))
 	{
-		if ((a->tab[0] > parsing[idx_pars] || (a->tab[0] == parsing[idx_pars] && idx_pars == parsing[0] + 1))
+		//Si le premier element de a est dans le chunk, on le push
+		if ((a->tab[0] > parsing[idx_pars] || (a->tab[0] == parsing[idx_pars]
+					&& idx_pars == parsing[0] + 1))
 			&& a->tab[0] <= parsing[idx_pars - 1])
 			push(b, a, 1);
-		else
+		else//Sinon on rotate
+		{
 			rotate(*a, 1);
+		}
 		i++;
 	}
 }

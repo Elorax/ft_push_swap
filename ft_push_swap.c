@@ -6,7 +6,7 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 12:27:52 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/28 04:08:35 by abiersoh         ###   ########.fr       */
+/*   Updated: 2021/12/17 23:24:29 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int argc, char **argv)
 		else
 			ft_tri_stack(&a, &b);
 	}
+//	ft_display_stacks(a, b);
 	free(a.tab);
 	free(b.tab);
 	return (0);
