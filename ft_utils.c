@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 12:27:52 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/26 14:04:23 by abiersoh         ###   ########.fr       */
+/*   Updated: 2021/12/29 14:14:48 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ void	ft_calcul_mins(t_itab *a, int *min, int *min2)
 			*min2 = i;
 		i++;
 	}
+}
+
+void	ft_freesplit(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		free(s[i++]);
+	free(s);
 }
 
 int	ft_find_closest(int a, int b, int size)

@@ -6,7 +6,7 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 12:57:20 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/11/27 14:10:01 by abiersoh         ###   ########.fr       */
+/*   Updated: 2021/12/29 14:15:35 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ typedef struct s_itab
 
 /*	Echange tout simplement les deux valeurs pointees par a et b	*/
 void	ft_swap(int *a, int *b);
+
+/*	Free tous les *s puis s											*/
+void	ft_freesplit(char **s);
 /*	Swap first and second element of a stack						*/
 void	swap(t_itab a, int display);
 /*	Push first element of stack a to the top of stack b				*/
@@ -42,6 +45,8 @@ int		is_arg_valid(char *s);
 void	ft_remonter(t_itab *a, int index);
 /*	Initialize stack a with the nb value contained in **av			*/
 int		ft_init_stacks(int nb, char **av, t_itab *a, t_itab *b);
+/*	Initialize stack a with values in av[1]							*/
+int		ft_init_splitted(char *av, t_itab *a, t_itab *b);
 /*	Display the current states of the stacks a and b				*/
 void	ft_display_stacks(t_itab a, t_itab b);
 /*	Fast sort for stacks of 2 or 3 elements							*/
