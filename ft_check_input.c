@@ -6,7 +6,7 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 13:27:26 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/12/17 23:04:33 by abiersoh         ###   ########.fr       */
+/*   Updated: 2022/02/21 19:29:41 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,25 @@ int	is_arg_valid(char *s)
 	res = 0;
 	sign = 1;
 	if (s[0] == '-' || s[0] == '+')
+	{
 		if (*s++ == '-')
 			sign = -1;
+		if (*s < '0' || *s > '9')
+			return (0);
+	}
 	while ((*s && *s >= '0' && *s <= '9'))
 	{
 		res = (res * 10) + (*s - '0');
+		if (res > 2147483648 || (res > 2147483647 && sign == 1))
+			return (0);
 		s++;
 	}
-	res = res * sign;
+	/*
 	if (*s && (*s > '9' || *s < '0'))
 		return (0);
-	if (res > 2147483647 || res < -2147483648)
-		return (0);
 	return (1);
+	*/
+	return (*s == 0);
 }
 
 int	ft_is_stack_valid(t_itab a)
