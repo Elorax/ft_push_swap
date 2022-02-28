@@ -6,7 +6,7 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 23:47:13 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/12/29 19:29:16 by abiersoh         ###   ########.fr       */
+/*   Updated: 2022/02/28 17:47:34 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,11 @@ void	check_str(t_itab *a, t_itab *b, char **str)
 		reverse_rotate(*b, 0);
 	else
 		exit((free(*str), write(1, "Error\n", 6), EXIT_SUCCESS));
-//	str = (free(str), get_next_line(0));
-	free(*str), *str = NULL;
-	*str = get_next_line(0);
+	*str = (free(*str), get_next_line(0));
 }
+
+//	free(*str), *str = NULL;
+//	*str = get_next_line(0);
 
 void	checker(t_itab *a, t_itab *b)
 {
@@ -52,10 +53,7 @@ void	checker(t_itab *a, t_itab *b)
 	if (ft_is_stack_sorted(*a) && (str != NULL))
 		write(1, "KO\n", 3);
 	while (str != NULL)
-	{	check_str(a, b, &str);
-
-
-	}
+		check_str(a, b, &str);
 }
 
 int	main(int ac, char **av)
@@ -66,10 +64,13 @@ int	main(int ac, char **av)
 	if (!ft_init_stacks(ac - 1, &av[1], &a, &b) || !ft_is_stack_valid(a))
 		return (write(1, "Error\n", 6), free(a.tab), free(b.tab), 0);
 	checker(&a, &b);
+	//printf("Donnes : %d\n", a.size);
 	if (ft_is_stack_sorted(a))
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
-	free(a.tab), a.tab = NULL;
-	free(b.tab), b.tab = NULL;
+	free(a.tab);
+	a.tab = NULL;
+	free(b.tab);
+	b.tab = NULL;
 }
