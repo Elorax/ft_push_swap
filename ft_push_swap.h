@@ -6,7 +6,7 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 12:57:20 by abiersoh          #+#    #+#             */
-/*   Updated: 2021/12/29 14:15:35 by abiersoh         ###   ########.fr       */
+/*   Updated: 2022/05/07 11:50:43 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,8 @@ int		ft_is_stack_sorted(t_itab a);
 /*	Checks if the stack initialized is valid, if there is			*/
 /*	no duplicated values											*/
 int		ft_is_stack_valid(t_itab a);
+
+int		max(int a, int b);
+void	tri_tableau(int *tab, int size);
 
 #endif

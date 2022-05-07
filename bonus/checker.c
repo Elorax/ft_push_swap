@@ -6,7 +6,7 @@
 /*   By: abiersoh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 23:47:13 by abiersoh          #+#    #+#             */
-/*   Updated: 2022/02/28 17:47:34 by abiersoh         ###   ########.fr       */
+/*   Updated: 2022/05/07 15:35:37 by abiersoh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,6 @@ void	check_str(t_itab *a, t_itab *b, char **str)
 	*str = (free(*str), get_next_line(0));
 }
 
-//	free(*str), *str = NULL;
-//	*str = get_next_line(0);
-
 void	checker(t_itab *a, t_itab *b)
 {
 	char	*str;
@@ -61,10 +58,11 @@ int	main(int ac, char **av)
 	t_itab	a;
 	t_itab	b;
 
+	if (ac == 1)
+		return (0);
 	if (!ft_init_stacks(ac - 1, &av[1], &a, &b) || !ft_is_stack_valid(a))
 		return (write(1, "Error\n", 6), free(a.tab), free(b.tab), 0);
 	checker(&a, &b);
-	//printf("Donnes : %d\n", a.size);
 	if (ft_is_stack_sorted(a))
 		write(1, "OK\n", 3);
 	else
